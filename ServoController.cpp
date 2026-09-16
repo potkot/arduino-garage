@@ -12,6 +12,8 @@ ServoController::ServoController(
 
 
 void ServoController::begin() {
+  servo1.write(maxAngle);
+  servo2.write(0);
 }
 
 
@@ -26,6 +28,8 @@ void ServoController::open() {
   state = OPENING;
 
   lastStepMs = millis();
+
+  emitEvent(DOOR_OPENING_START);
 }
 
 
@@ -40,11 +44,13 @@ void ServoController::close() {
   state = CLOSING;
 
   lastStepMs = millis();
+
+  emitEvent(DOOR_CLOSING_START);
 }
 
 
 void ServoController::stop() {
-  servo1.write(angle);
+  servo1.write(maxAngle - angle);
   servo2.write(angle);
 
   servo1.detach();
@@ -69,14 +75,15 @@ void ServoController::update() {
 
 
   if (state == OPENING) {
-    if (angle < 90) {
+    if (angle < maxAngle) {
       angle++;
 
-      servo1.write(angle);
+      servo1.write(maxAngle - angle);
       servo2.write(angle);
     }
 
-    if (angle >= 90) {
+    if (angle >= maxAngle) {
+      emitEvent(DOOR_OPENING_STOP);
       stop();
     }
   }
@@ -86,11 +93,12 @@ void ServoController::update() {
     if (angle > 0) {
       angle--;
 
-      servo1.write(angle);
+      servo1.write(maxAngle - angle);
       servo2.write(angle);
     }
 
     if (angle <= 0) {
+      emitEvent(DOOR_CLOSING_STOP);
       stop();
     }
   }

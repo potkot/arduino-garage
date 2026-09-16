@@ -23,6 +23,8 @@ public:
 
   void setColor(Color color);
 
+  void setColorFor(Color color, unsigned long durationMs);
+
   void off();
 
   void update();

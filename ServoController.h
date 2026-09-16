@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <Servo.h>
+#include "Events.h"
 
 class ServoController {
 public:
@@ -35,6 +36,7 @@ private:
   State state = IDLE;
 
   int angle = 0;
+  int maxAngle = 80;
 
   unsigned long lastStepMs = 0;
 };

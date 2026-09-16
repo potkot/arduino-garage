@@ -18,8 +18,8 @@ constexpr uint8_t REGISTER_LED_GREEN = 2;
 
 // Светодиоды для светофора на сдвиговом регистре
 constexpr uint8_t REGISTER_TRAFFIC_LIGHT_RED = 4;
-constexpr uint8_t REGISTER_TRAFFIC_LIGHT_YELLOW = 3;
-constexpr uint8_t REGISTER_TRAFFIC_LIGHT_GREEN = 5;
+constexpr uint8_t REGISTER_TRAFFIC_LIGHT_YELLOW = 5;
+constexpr uint8_t REGISTER_TRAFFIC_LIGHT_GREEN = 3;
 
 // Piezo пищалка
 constexpr uint8_t PIEZO_PIN = 8;
@@ -67,3 +67,5 @@ constexpr unsigned long LED_DENIED_TIME = 1000;
 constexpr unsigned long LED_MAXIM_TIME = 1000;
 
 constexpr unsigned long BEEP_TIME = 120;
+
+constexpr unsigned long TRAFFIC_LIGHT_TIME = 3000;

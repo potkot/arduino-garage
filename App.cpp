@@ -73,6 +73,18 @@ void processEvents() {
       case EVENT_IR_BTN_4:
         trafficLight.off();
         break;
+      case DOOR_OPENING_START:
+        trafficLight.setColor(TrafficLightController::RED);
+        break;
+      case DOOR_OPENING_STOP:
+        trafficLight.setColor(TrafficLightController::GREEN);
+        break;
+      case DOOR_CLOSING_START:
+        trafficLight.setColor(TrafficLightController::RED);
+        break;
+      case DOOR_CLOSING_STOP:
+        trafficLight.setColor(TrafficLightController::YELLOW);
+        break;
       case EVENT_NONE:
       default:
         break;

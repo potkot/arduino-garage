@@ -29,7 +29,15 @@ enum EventType : uint8_t
     EVENT_BUTTON_5,
     EVENT_BUTTON_6,
     EVENT_BUTTON_7,
-    EVENT_BUTTON_8
+    EVENT_BUTTON_8,
+
+    //События открывания дверей
+    DOOR_OPENING_START,
+    DOOR_OPENING_STOP,
+    DOOR_CLOSING_START,
+    DOOR_CLOSING_STOP,
+
+
 };
 
 struct Event

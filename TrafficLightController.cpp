@@ -13,6 +13,8 @@ TrafficLightController::TrafficLightController(
 
 void TrafficLightController::begin() {
   off();
+  shiftRegister.setBit(yellowBit, true);
+  shiftRegister.write();
 }
 
 void TrafficLightController::writeColor(Color color) {
@@ -39,7 +41,18 @@ void TrafficLightController::writeColor(Color color) {
 }
 
 void TrafficLightController::setColor(Color color) {
+  timed = false;
   writeColor(color);
+}
+
+void TrafficLightController::setColorFor(
+  Color color,
+  unsigned long durationMs) {
+  writeColor(color);
+
+  timed = true;
+
+  offAt = millis() + durationMs;
 }
 
 void TrafficLightController::off() {
@@ -51,6 +64,10 @@ void TrafficLightController::off() {
 void TrafficLightController::update() {
   if (!timed) {
     return;
+  }
+
+  if ((long)(millis() - offAt) >= 0) {
+    off();
   }
 
 }
