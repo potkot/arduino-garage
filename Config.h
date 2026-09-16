@@ -16,6 +16,11 @@ constexpr uint8_t REGISTER_LED_BLUE = 0;
 constexpr uint8_t REGISTER_LED_RED = 1;
 constexpr uint8_t REGISTER_LED_GREEN = 2;
 
+// Светодиоды для светофора на сдвиговом регистре
+constexpr uint8_t REGISTER_TRAFFIC_LIGHT_RED = 4;
+constexpr uint8_t REGISTER_TRAFFIC_LIGHT_YELLOW = 3;
+constexpr uint8_t REGISTER_TRAFFIC_LIGHT_GREEN = 5;
+
 // Piezo пищалка
 constexpr uint8_t PIEZO_PIN = 8;
 
@@ -40,6 +45,10 @@ constexpr uint8_t IR_CMD_MUSIC = 0x16;
 constexpr uint8_t IR_CMD_CLOSE = 0x8;
 constexpr uint8_t IR_CMD_OPEN = 0x5A;
 constexpr uint8_t IR_CMD_STOP = 0x52;
+constexpr uint8_t IR_BTN_1 = 0x45;
+constexpr uint8_t IR_BTN_2 = 0x46;
+constexpr uint8_t IR_BTN_3 = 0x47;
+constexpr uint8_t IR_BTN_4 = 0x44;
 
 // RFID карты
 constexpr uint8_t ACCESS_UID[] = { 0x43, 0xFE, 0x3F, 0x38 };

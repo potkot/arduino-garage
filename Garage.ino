@@ -8,6 +8,7 @@
 #include "ServoController.h"
 #include "SoundController.h"
 #include "LedController.h"
+#include "TrafficLightController.h"
 
 #include "App.h"
 
@@ -20,6 +21,7 @@ SoundController sound(PIEZO_PIN, remote);
 ServoController servos(SERVO1_PIN, SERVO2_PIN);
 
 LedController led(shiftRegister, REGISTER_LED_RED, REGISTER_LED_GREEN, REGISTER_LED_BLUE);
+TrafficLightController trafficLight(shiftRegister, REGISTER_TRAFFIC_LIGHT_RED, REGISTER_TRAFFIC_LIGHT_YELLOW, REGISTER_TRAFFIC_LIGHT_GREEN);
 
 
 void setup() {
@@ -34,6 +36,7 @@ void setup() {
   servos.begin();
   sound.begin();
   led.begin();
+  trafficLight.begin();
 
   Serial.println(F("Controller started"));
 }
@@ -52,4 +55,5 @@ void loop() {
   servos.update();
   sound.update();
   led.update();
+  trafficLight.update();
 }

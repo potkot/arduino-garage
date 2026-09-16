@@ -6,10 +6,12 @@
 #include "ServoController.h"
 #include "SoundController.h"
 #include "LedController.h"
+#include "TrafficLightController.h"
 
 extern ServoController servos;
 extern SoundController sound;
 extern LedController led;
+extern TrafficLightController trafficLight;
 
 
 //Метки для автоматического открытия
@@ -56,8 +58,21 @@ void processEvents() {
         servos.stop();
         led.off();
         break;
-
-
+      case EVENT_IR_BTN_1:
+        trafficLight.off();
+        trafficLight.setColor(TrafficLightController::RED);
+        break;
+      case EVENT_IR_BTN_2:
+        trafficLight.off();
+        trafficLight.setColor(TrafficLightController::YELLOW);
+        break;
+      case EVENT_IR_BTN_3:
+        trafficLight.off();
+        trafficLight.setColor(TrafficLightController::GREEN);
+        break;
+      case EVENT_IR_BTN_4:
+        trafficLight.off();
+        break;
       case EVENT_NONE:
       default:
         break;

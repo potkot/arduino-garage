@@ -38,6 +38,18 @@ void IrRemoteReader::update() {
     case IR_CMD_STOP:
       emitEvent(EVENT_IR_SERVO_STOP);
       break;
+    case IR_BTN_1:
+      emitEvent(EVENT_IR_BTN_1);
+      break;
+    case IR_BTN_2:
+      emitEvent(EVENT_IR_BTN_2);
+      break;
+    case IR_BTN_3:
+      emitEvent(EVENT_IR_BTN_3);
+      break;
+    case IR_BTN_4:
+      emitEvent(EVENT_IR_BTN_4);
+      break;
     default:
       break;
   }
