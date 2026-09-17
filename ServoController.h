@@ -36,7 +36,7 @@ private:
   State state = IDLE;
 
   int angle = 0;
-  int maxAngle = 80;
+  int maxAngle = 85 ;
 
   unsigned long lastStepMs = 0;
 };
