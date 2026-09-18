@@ -17,26 +17,33 @@ void IrRemoteReader::begin() {
 
 
 void IrRemoteReader::update() {
-
   if (!IrReceiver.decode()) {
     return;
   }
 
-
   uint8_t command = IrReceiver.decodedIRData.command;
 
   switch (command) {
-    case IR_CMD_MUSIC:
-      emitEvent(EVENT_IR_MUSIC);
+    case IR_BTN_NUMBER_SIGN:
+      emitEvent(EVENT_IR_BTN_NUMBER_SIGN);
       break;
-    case IR_CMD_OPEN:
-      emitEvent(EVENT_IR_SERVO_OPEN);
+    case IR_BTN_ASTERISK:
+      emitEvent(EVENT_IR_BTN_ASTERISK);
       break;
-    case IR_CMD_CLOSE:
-      emitEvent(EVENT_IR_SERVO_CLOSE);
+    case IR_BTN_ARROW_RIGHT:
+      emitEvent(EVENT_IR_BTN_ARROW_RIGHT);
       break;
-    case IR_CMD_STOP:
-      emitEvent(EVENT_IR_SERVO_STOP);
+    case IR_BTN_ARROW_LEFT:
+      emitEvent(EVENT_IR_BTN_ARROW_LEFT);
+      break;
+    case IR_BTN_ARROW_DOWN:
+      emitEvent(EVENT_IR_BTN_ARROW_DOWN);
+      break;
+    case IR_BTN_ARROW_TOP:
+      emitEvent(EVENT_IR_BTN_ARROW_TOP);
+      break;
+    case IR_BTN_OK:
+      emitEvent(EVENT_IR_BTN_OK);
       break;
     case IR_BTN_1:
       emitEvent(EVENT_IR_BTN_1);
@@ -49,6 +56,24 @@ void IrRemoteReader::update() {
       break;
     case IR_BTN_4:
       emitEvent(EVENT_IR_BTN_4);
+      break;
+    case IR_BTN_5:
+      emitEvent(EVENT_IR_BTN_5);
+      break;
+    case IR_BTN_6:
+      emitEvent(EVENT_IR_BTN_6);
+      break;
+    case IR_BTN_7:
+      emitEvent(EVENT_IR_BTN_7);
+      break;
+    case IR_BTN_8:
+      emitEvent(EVENT_IR_BTN_8);
+      break;
+    case IR_BTN_9:
+      emitEvent(EVENT_IR_BTN_9);
+      break;
+    case IR_BTN_0:
+      emitEvent(EVENT_IR_BTN_0);
       break;
     default:
       break;

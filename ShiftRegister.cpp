@@ -20,14 +20,14 @@ void ShiftRegister::begin() {
 }
 
 void ShiftRegister::setBit(uint8_t bit, bool value) {
-  if (bit > 7) {
+  if (bit > 15) {
     return;
   }
 
   if (value) {
-    state |= (1 << bit);
+    state |= (1UL << bit);
   } else {
-    state &= ~(1 << bit);
+    state &= ~(1UL << bit);
   }
 }
 
@@ -38,7 +38,11 @@ void ShiftRegister::clearBit(uint8_t bit) {
 void ShiftRegister::write() {
   digitalWrite(latchPin, LOW);
 
-  shiftOut(dataPin, clockPin, MSBFIRST, state);
+  // Второй регистр
+  shiftOut(dataPin, clockPin, MSBFIRST, (state >> 8) & 0xFF);
+
+  // Первый регистр
+  shiftOut(dataPin, clockPin, MSBFIRST, state & 0xFF);
 
   digitalWrite(latchPin, HIGH);
 }

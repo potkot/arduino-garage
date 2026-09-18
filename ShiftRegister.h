@@ -26,5 +26,5 @@ private:
   uint8_t clockPin;
   uint8_t latchPin;
 
-  uint8_t state = 0;
+  uint16_t state = 0;
 };

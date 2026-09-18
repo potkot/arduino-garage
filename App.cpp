@@ -7,11 +7,13 @@
 #include "SoundController.h"
 #include "LedController.h"
 #include "TrafficLightController.h"
+#include "SevenLedIndicatorController.h"
 
 extern ServoController servos;
 extern SoundController sound;
 extern LedController led;
 extern TrafficLightController trafficLight;
+extern SevenLedIndicatorController sevenLedIndicator;
 
 
 //Метки для автоматического открытия
@@ -43,35 +45,53 @@ void processEvents() {
         sound.beep(1200, BEEP_TIME);
         led.setColorFor(LedController::RED, LED_ACCESS_TIME);
         break;
-      case EVENT_IR_MUSIC:
+      case EVENT_IR_BTN_ASTERISK:
         sound.playMissionImpossible();
         break;
-      case EVENT_IR_SERVO_OPEN:
+      case EVENT_IR_BTN_ARROW_RIGHT:
         servos.open();
         led.setColorFor(LedController::GREEN, LED_ACCESS_TIME);
         break;
-      case EVENT_IR_SERVO_CLOSE:
+      case EVENT_IR_BTN_ARROW_LEFT:
         servos.close();
         led.setColorFor(LedController::RED, LED_ACCESS_TIME);
         break;
-      case EVENT_IR_SERVO_STOP:
+      case EVENT_IR_BTN_ARROW_DOWN:
         servos.stop();
         led.off();
         break;
       case EVENT_IR_BTN_1:
-        trafficLight.off();
-        trafficLight.setColor(TrafficLightController::RED);
+        sevenLedIndicator.show(1);
         break;
       case EVENT_IR_BTN_2:
-        trafficLight.off();
-        trafficLight.setColor(TrafficLightController::YELLOW);
+        sevenLedIndicator.show(2);
         break;
       case EVENT_IR_BTN_3:
-        trafficLight.off();
-        trafficLight.setColor(TrafficLightController::GREEN);
+        sevenLedIndicator.show(3);
         break;
       case EVENT_IR_BTN_4:
-        trafficLight.off();
+        sevenLedIndicator.show(4);
+        break;
+      case EVENT_IR_BTN_5:
+        sevenLedIndicator.show(5);
+        break;
+      case EVENT_IR_BTN_6:
+        sevenLedIndicator.show(6);
+        break;
+      case EVENT_IR_BTN_7:
+        sevenLedIndicator.show(7);
+        break;
+      case EVENT_IR_BTN_8:
+        sevenLedIndicator.show(8);
+        break;
+      case EVENT_IR_BTN_9:
+        sevenLedIndicator.show(9);
+        break;
+      case EVENT_IR_BTN_0:
+        sevenLedIndicator.show(0);
+        break;
+      case EVENT_IR_BTN_NUMBER_SIGN:
+        sevenLedIndicator.off();
         break;
       case DOOR_OPENING_START:
         trafficLight.setColor(TrafficLightController::RED);

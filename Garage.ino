@@ -9,6 +9,7 @@
 #include "SoundController.h"
 #include "LedController.h"
 #include "TrafficLightController.h"
+#include "SevenLedIndicatorController.h"
 
 #include "App.h"
 
@@ -22,6 +23,7 @@ ServoController servos(SERVO1_PIN, SERVO2_PIN);
 
 LedController led(shiftRegister, REGISTER_LED_RED, REGISTER_LED_GREEN, REGISTER_LED_BLUE);
 TrafficLightController trafficLight(shiftRegister, REGISTER_TRAFFIC_LIGHT_RED, REGISTER_TRAFFIC_LIGHT_YELLOW, REGISTER_TRAFFIC_LIGHT_GREEN);
+SevenLedIndicatorController sevenLedIndicator(shiftRegister);
 
 
 void setup() {
@@ -37,6 +39,7 @@ void setup() {
   sound.begin();
   led.begin();
   trafficLight.begin();
+  sevenLedIndicator.begin();
 
   Serial.println(F("Controller started"));
 }
@@ -56,4 +59,5 @@ void loop() {
   sound.update();
   led.update();
   trafficLight.update();
+  sevenLedIndicator.update();
 }
