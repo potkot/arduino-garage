@@ -39,7 +39,6 @@ constexpr uint8_t BUTTON_LATCH_PIN = A2;
 constexpr uint8_t BUTTON_COUNT = 8;
 
 
-
 // ИК комманды
 
 constexpr uint8_t IR_BTN_ARROW_LEFT = 0x8;
@@ -61,8 +60,8 @@ constexpr uint8_t IR_BTN_ARROW_TOP = 0x18;
 constexpr uint8_t IR_BTN_OK = 0x1C;
 
 // RFID карты
-constexpr uint8_t ACCESS_UID[] = { 0x43, 0xFE, 0x3F, 0x38 };
-constexpr uint8_t MAXIM_UID[] = { 0x34, 0xD7, 0xDF, 0xC1, 0x91, 0x9F, 0x70 };
+constexpr uint8_t ACCESS_UID[] = {0x43, 0xFE, 0x3F, 0x38};
+constexpr uint8_t MAXIM_UID[] = {0x34, 0xD7, 0xDF, 0xC1, 0x91, 0x9F, 0x70};
 
 
 // Тайминги
@@ -95,3 +94,6 @@ static constexpr uint8_t DIGIT_MASKS[10] = {
   0b01111111, // 8
   0b01101111 // 9
 };
+
+constexpr unsigned long WAITING_BEFORE_DOORS_CLOSE = 9000;
+constexpr unsigned long WAITING_BEFORE_DOORS_CLOSE_TIME_START = 9;

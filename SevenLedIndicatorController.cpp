@@ -32,11 +32,34 @@ void SevenLedIndicatorController::show(uint8_t digit) {
   shiftRegister.write();
 }
 
-void SevenLedIndicatorController::showDot() {
+void SevenLedIndicatorController::countdown() {
+  countdownStart = true;
 
+  currentDigit = WAITING_BEFORE_DOORS_CLOSE_TIME_START;
+
+  offAt = millis() + WAITING_BEFORE_DOORS_CLOSE;
+  changeDigit = millis() + 1000;
+
+  show(currentDigit);
+}
+
+void SevenLedIndicatorController::showDot() {
 }
 
 void SevenLedIndicatorController::update() {
+  if (countdownStart) {
+    if ((long) (millis() - changeDigit) >= 0) {
+      changeDigit = millis() + 1000;
+      currentDigit = currentDigit - 1;
+      show(currentDigit);
+      show(currentDigit);
+    }
+
+    if ((long) (millis() - offAt) >= 0) {
+      off();
+      countdownStart = false;
+    }
+  }
 }
 
 void SevenLedIndicatorController::off() {

@@ -44,6 +44,10 @@ void IrRemoteReader::update() {
       break;
     case IR_BTN_OK:
       emitEvent(EVENT_IR_BTN_OK);
+      /**
+       * @todo Убрать после
+       */
+      emitEvent(EVENT_ACCESS_GRANTED);
       break;
     case IR_BTN_1:
       emitEvent(EVENT_IR_BTN_1);

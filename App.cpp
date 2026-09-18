@@ -18,8 +18,8 @@ extern SevenLedIndicatorController sevenLedIndicator;
 
 //Метки для автоматического открытия
 namespace {
-bool closeAfterOpen = false;
-unsigned long closeAt = 0;
+  bool closeAfterOpen = false;
+  unsigned long closeAt = 0;
 }
 
 
@@ -27,14 +27,13 @@ void processEvents() {
   Event event;
 
   while (getEvent(event)) {
-
     switch (event.type) {
       case EVENT_ACCESS_GRANTED:
         servos.open();
         led.setColorFor(LedController::GREEN, LED_ACCESS_TIME);
 
         closeAfterOpen = true;
-        closeAt = millis() + 5000;
+        closeAt = millis() + WAITING_BEFORE_DOORS_CLOSE;
 
         break;
       case EVENT_MAXIM_CARD:
@@ -98,6 +97,11 @@ void processEvents() {
         break;
       case DOOR_OPENING_STOP:
         trafficLight.setColor(TrafficLightController::GREEN);
+
+        if (closeAfterOpen) {
+          sevenLedIndicator.countdown();
+          closeAt = millis() + WAITING_BEFORE_DOORS_CLOSE;
+        }
         break;
       case DOOR_CLOSING_START:
         trafficLight.setColor(TrafficLightController::RED);
@@ -114,7 +118,7 @@ void processEvents() {
   if (closeAfterOpen) {
     unsigned long now = millis();
 
-    if ((long)(now - closeAt) >= 0) {
+    if ((long) (now - closeAt) >= 0) {
       servos.close();
       led.setColorFor(LedController::RED, LED_ACCESS_TIME);
       closeAfterOpen = false;
